@@ -14,6 +14,97 @@
       font-family: 'Roboto', sans-serif;
       text-decoration: none;
     }
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .card {
+        background: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        width: 250px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%;
+    }
+
+    .card h3 {
+        margin: 15px 0;
+    }
+
+    .card p {
+        color: #888;
+        font-size: 18px;
+        margin: 0 0 15px;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 600px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .popup h2 {
+        margin-top: 0;
+    }
+
+    .popup p {
+        margin: 15px 0;
+    }
+
+    .popup .close {
+        background: #ff5f5f;
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        height: 30px;
+        line-height: 30px;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 30px;
+        text-align: center;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
 
     nav {
       width: 100%;
@@ -246,8 +337,9 @@
   <nav>
     <ul>
       <li><a href="#">GPUHunt</a></li>
-      <li><a href="#">GPUHunt</a></li>  
-      <li><a href="#">GPUHunt</a></li>  
+      <li><a href="#">Products</a></li>  
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>  
       <li><a href="#"><i class="fas fa-search"></i></a></li> <!-- 챗봇 여기 들어가면 될듯--> 
       <li><a href="#"><i class="fas fa-shopping-bag"></i></a></li>  
     </ul>
@@ -261,7 +353,7 @@
     <div class="container"><br><br>
       <h2>GPU</h2>
       <div class="grid">
-        <div class="grid-product">
+        <div class="grid-product" onclick="openPopup('popup1')">
           <img src="https://assets.nvidia.partners/images/png/GeForce-ADA-RTX4060Ti-Back.png">
           <div class="grid-detail">
             <p>RTX 4060Ti</p>
@@ -406,5 +498,30 @@
     
   </div>
 </footer>
+
+<div id="popup1" class="popup">
+  <button class="close" onclick="closePopup('popup1')">&times;</button>
+  <h2>RTX 4060Ti 제품 상세 정보</h2>
+  <p>이 GPU는 최신 아키텍처를 사용하여 뛰어난 성능을 제공합니다.</p>
+  <ul>
+      <li>CUDA Cores: 4864</li>
+      <li>Boost Clock: 1.67 GHz</li>
+      <li>Memory Size: 8GB GDDR6</li>
+      <li>Memory Interface: 128-bit</li>
+  </ul>
+</div>
+<div id="overlay" class="overlay" onclick="closePopup('popup1')"></div>
+
+<script>
+  function openPopup(popupId) {
+      document.getElementById(popupId).style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+  }
+
+  function closePopup(popupId) {
+      document.getElementById(popupId).style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+  }
+</script>
 </body>
 </html>
