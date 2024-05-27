@@ -361,7 +361,7 @@
           </div>
         </div>
         
-        <div class="grid-product">
+        <div class="grid-product" onclick="openPopup('popup2')">
           <img src="https://assets.nvidia.partners/images/png/GeForce-ADA-RTX4070-Back.png">
           <div class="grid-detail">
             <p>RTX 4070</p>
@@ -369,7 +369,7 @@
           </div>
         </div>
         
-        <div class="grid-product">
+        <div class="grid-product" onclick="openPopup('popup3')">
           <img src="https://assets.nvidia.partners/images/png/RTX-4070-SUPER-Back.png">
           <div class="grid-detail">
             <p>RTX 4070 SUPER</p>
@@ -377,7 +377,7 @@
           </div>
         </div>
 
-        <div class="grid-product">
+        <div class="grid-product" onclick="openPopup('popup4')">
           <img src="https://assets.nvidia.partners/images/png/3090_Ti_GPU-removebg-preview.png">
           <div class="grid-detail">
             <p>RTX 3090 Ti</p>
@@ -385,7 +385,7 @@
           </div>
         </div>
         
-        <div class="grid-product">
+        <div class="grid-product" onclick="openPopup('popup5')">
           <br><br><img src="https://assets.nvidia.partners/images/png/4080_FE-removebg-preview.png">
           <div class="grid-detail">
             <br><br><p>RTX 4080</p>
@@ -393,7 +393,7 @@
           </div>
         </div>
         
-        <div class="grid-product">
+        <div class="grid-product" onclick="openPopup('popup6')">
           <img src="https://assets.nvidia.partners/images/png/GeForce-RTX4090-Back.png">
           <div class="grid-detail">
             <p>RTX 4090</p>
@@ -509,7 +509,73 @@
       <li>Memory Interface: 128-bit</li>
   </ul>
 </div>
+
+<div id="popup2" class="popup">
+  <button class="close" onclick="closePopup('popup2')">&times;</button>
+  <h2>RTX 4070 제품 상세 정보</h2>
+  <p>이 GPU는 최신 아키텍처를 사용하여 뛰어난 성능을 제공합니다.</p>
+  <ul>
+      <li>CUDA Cores: 4864</li>
+      <li>Boost Clock: 1.67 GHz</li>
+      <li>Memory Size: 8GB GDDR6</li>
+      <li>Memory Interface: 128-bit</li>
+  </ul>
+</div>
+
+<div id="popup3" class="popup">
+  <button class="close" onclick="closePopup('popup3')">&times;</button>
+  <h2>RTX 4070 SUPER 제품 상세 정보</h2>
+  <p>이 GPU는 최신 아키텍처를 사용하여 뛰어난 성능을 제공합니다.</p>
+  <ul>
+      <li>CUDA Cores: 4864</li>
+      <li>Boost Clock: 1.67 GHz</li>
+      <li>Memory Size: 8GB GDDR6</li>
+      <li>Memory Interface: 128-bit</li>
+  </ul>
+</div>
+
+<div id="popup4" class="popup">
+  <button class="close" onclick="closePopup('popup4')">&times;</button>
+  <h2>RTX 3090Ti 제품 상세 정보</h2>
+  <p>이 GPU는 최신 아키텍처를 사용하여 뛰어난 성능을 제공합니다.</p>
+  <ul>
+      <li>CUDA Cores: 4864</li>
+      <li>Boost Clock: 1.67 GHz</li>
+      <li>Memory Size: 8GB GDDR6</li>
+      <li>Memory Interface: 128-bit</li>
+  </ul>
+</div>
+
+<div id="popup5" class="popup">
+  <button class="close" onclick="closePopup('popup5')">&times;</button>
+  <h2>RTX 4080 제품 상세 정보</h2>
+  <p>이 GPU는 최신 아키텍처를 사용하여 뛰어난 성능을 제공합니다.</p>
+  <ul>
+      <li>CUDA Cores: 4864</li>
+      <li>Boost Clock: 1.67 GHz</li>
+      <li>Memory Size: 8GB GDDR6</li>
+      <li>Memory Interface: 128-bit</li>
+  </ul>
+</div>
+
+<div id="popup6" class="popup">
+  <button class="close" onclick="closePopup('popup6')">&times;</button>
+  <h2>RTX 4090 제품 상세 정보</h2>
+  <p>이 GPU는 최신 아키텍처를 사용하여 뛰어난 성능을 제공합니다.</p>
+  <ul>
+      <li>CUDA Cores: 4864</li>
+      <li>Boost Clock: 1.67 GHz</li>
+      <li>Memory Size: 8GB GDDR6</li>
+      <li>Memory Interface: 128-bit</li>
+  </ul>
+</div>
+
 <div id="overlay" class="overlay" onclick="closePopup('popup1')"></div>
+<div id="overlay" class="overlay" onclick="closePopup('popup2')"></div>
+<div id="overlay" class="overlay" onclick="closePopup('popup3')"></div>
+<div id="overlay" class="overlay" onclick="closePopup('popup4')"></div>
+<div id="overlay" class="overlay" onclick="closePopup('popup5')"></div>
+<div id="overlay" class="overlay" onclick="closePopup('popup6')"></div>
 
 <script>
   function openPopup(popupId) {
