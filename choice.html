@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상세검색</title>
+    <style>
+        
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          padding: 20px;
+        }
+    
+        .container {
+          max-width: 800px;
+          margin-right: 50px;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        .section {
+          margin-bottom: 20px;
+          margin-left: -120px;
+        }
+    
+        .section h2 {
+          background-color: #e0f7fa;
+          padding: 10px;
+          border-radius: 4px;
+          margin: 0;
+          margin-bottom: 10px;
+        }
+    
+        .checkbox-group-container {
+          display: flex;
+          flex-wrap: wrap;
+        }
+    
+        .checkbox-group {
+          display: flex;
+          flex-direction: column;
+          margin-right: 20px;
+          flex-grow: 1;
+        }
+    
+        .checkbox-group label {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+        }
+    
+        .search-button {
+          text-align: center;
+        }
+    
+        .search-button button {
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    
+        .search-button button:hover {
+          background-color: #0056b3;
+        }
+
+            /*--- section welcome ---*/
+    .welcome {
+      width: 100%;
+      height: 500px;
+      background-image: url("https://github.com/carusina/Final-SoftWare-Project/blob/GPUHunt_page/%E1%84%83%E1%85%A1%E1%86%AF.png?raw=true");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .welcome h1 {
+      color: #fff;
+      font-weight: 300;
+      font-size: 2rem;
+    }
+    /*--- section welcome ---*/
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      text-decoration: none;
+    }
+    
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .card {
+        background: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        width: 250px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%;
+    }
+
+    .card h3 {
+        margin: 15px 0;
+    }
+
+    .card p {
+        color: #888;
+        font-size: 18px;
+        margin: 0 0 15px;
+    }
+    
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    /*드랍다운 nav*/
+    nav {
+      width: 100%;
+      height: 48px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+      position: relative;
+    }
+
+    nav ul li a {
+      font-weight: 300;
+      color: #adadad;
+      transition: 600ms;
+    }
+
+    nav ul li a:hover {
+      color: #f5f5f7;
+    }
+
+    nav ul li .dropdown {
+      display: none;
+      position: absolute;
+      top: 170%;
+      left: 0;
+      background: #000;
+      padding: 10px 20px;
+      list-style: none;
+      border-radius: 4px;
+    }
+
+    nav ul li .dropdown li {
+      margin: 0;
+    }
+
+    nav ul li .dropdown li a {
+      padding: 10px 20px;
+      white-space: nowrap;
+      color: #fff;
+      display: block;
+    }
+
+    nav ul li:hover .dropdown {
+      display: block;
+    }
+    /*드랍다운 nav end*/
+      </style>
+</head>
+<body background class = "welcome">
+    <nav>
+        <ul>
+          <li class="menu-item"><a href="#">GPUHunt</a>
+            <ul class="dropdown">
+              <li><a href="#">Made by</a></li>
+              <li><a href="#">김민서</a></li>
+              <li><a href="#">김성환</a></li>
+              <li><a href="#">김형진</a></li>
+              <li><a href="#">송호영</a></li>
+              <li><a href="#">정지석</a></li>
+              <li><a href="#">조준혁</a></li>
+            </ul>
+          </li>
+          <li class="menu-item"><a href="#">Products</a>
+            <ul class="dropdown">
+              <li><a href="#">GPU 1</a></li>
+              <li><a href="#">GPU 2</a></li>
+              <li><a href="#">GPU 3</a></li>
+            </ul>
+          </li>
+          <li class="menu-item"><a href="#">About</a>
+            <ul class="dropdown">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Mission</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Contact</a></li>  
+          <li><a href="#"><i class="fas fa-search"></i></a></li> <!-- 챗봇 여기 들어가면 될듯--> 
+          <li><a href="#"><i class="fas fa-shopping-bag"></i></a></li>  
+        </ul>
+        <li class="menu-item"><a href="/login.html">로그인</a>
+      </nav>
+    <div class="container">
+        <h1>상세검색</h1>
+        <form>
+            <div class="section">
+                <h2>제조사별</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="manufacturer" value="이엠텍"> 이엠텍</label>
+                        <label><input type="checkbox" name="manufacturer" value="MSI"> MSI</label>
+                        <label><input type="checkbox" name="manufacturer" value="GIGABYTE"> GIGABYTE</label>
+                        <label><input type="checkbox" name="manufacturer" value="갤럭시"> 갤럭시</label>
+                        <label><input type="checkbox" name="manufacturer" value="ZOTAC"> ZOTAC</label>
+                        <label><input type="checkbox" name="manufacturer" value="ASUS"> ASUS</label>
+                        <label><input type="checkbox" name="manufacturer" value="COLORFUL"> COLORFUL</label>
+                        <label><input type="checkbox" name="manufacturer" value="ASRock"> ASRock</label>
+                        <label><input type="checkbox" name="manufacturer" value="앱솔"> 앱솔</label>
+                        <label><input type="checkbox" name="manufacturer" value="SAPPHIRE"> SAPPHIRE</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>NVIDIA 칩셋</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="nvidia_chipset" value="RTX 4090"> RTX 4090</label>
+                        <label><input type="checkbox" name="nvidia_chipset" value="RTX 4080 SUPER"> RTX 4080 SUPER</label>
+                        <label><input type="checkbox" name="nvidia_chipset" value="RTX 4070 Ti SUPER"> RTX 4070 Ti SUPER</label>
+                        <label><input type="checkbox" name="nvidia_chipset" value="RTX 4070 SUPER"> RTX 4070 SUPER</label>
+                        <label><input type="checkbox" name="nvidia_chipset" value="RTX 4060"> RTX 4060</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>AMD 칩셋</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="amd_chipset" value="RX 7900 XTX"> RX 7900 XTX</label>
+                        <label><input type="checkbox" name="amd_chipset" value="RX 7900 GRE"> RX 7900 GRE</label>
+                        <label><input type="checkbox" name="amd_chipset" value="RX 7800 XT"> RX 7800 XT</label>
+                        <label><input type="checkbox" name="amd_chipset" value="RX 7600"> RX 7600</label>
+                        <label><input type="checkbox" name="amd_chipset" value="RX 6600"> RX 6600</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>인텔 칩셋</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="intel_chipset" value="ARC A770"> ARC A770</label>
+                        <label><input type="checkbox" name="intel_chipset" value="ARC A750"> ARC A750</label>
+                        <label><input type="checkbox" name="intel_chipset" value="ARC A580"> ARC A580</label>
+                        <label><input type="checkbox" name="intel_chipset" value="ARC A380"> ARC A380</label>
+                        <label><input type="checkbox" name="intel_chipset" value="ARC A310"> ARC A310</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>인터페이스</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="interface" value="PCIe5.0"> PCIe5.0</label>
+                        <label><input type="checkbox" name="interface" value="PCIe4.0x16"> PCIe4.0x16</label>
+                        <label><input type="checkbox" name="interface" value="PCIe4.0x16(at x8)"> PCIe4.0x16(at x8)</label>
+                        <label><input type="checkbox" name="interface" value="PCIe4.0x16(at x4)"> PCIe4.0x16(at x4)</label>
+                        <label><input type="checkbox" name="interface" value="PCIe4.0x8"> PCIe4.0x8</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>메모리 용량</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="memory_size" value="24GB"> 24GB</label>
+                        <label><input type="checkbox" name="memory_size" value="16GB"> 16GB</label>
+                        <label><input type="checkbox" name="memory_size" value="12GB"> 12GB</label>
+                        <label><input type="checkbox" name="memory_size" value="8GB"> 8GB</label>
+                        <label><input type="checkbox" name="memory_size" value="6GB"> 6GB</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>출력단자</h2>
+                <div class="checkbox-group-container">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="output" value="HDMI2.1"> HDMI2.1</label>
+                        <label><input type="checkbox" name="output" value="HDMI2.0"> HDMI2
+                            <label><input type="checkbox" name="output" value="HDMI"> HDMI</label>
+                            <label><input type="checkbox" name="output" value="DP2.1"> DP2.1</label>
+                            <label><input type="checkbox" name="output" value="DP2.0"> DP2.0</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section">
+                    <h2>권장 파워용량</h2>
+                    <div class="checkbox-group-container">
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="power" value="450W 이상"> 450W 이상</label>
+                            <label><input type="checkbox" name="power" value="550W 이상"> 550W 이상</label>
+                            <label><input type="checkbox" name="power" value="650W 이상"> 650W 이상</label>
+                            <label><input type="checkbox" name="power" value="750W 이상"> 750W 이상</label>
+                            <label><input type="checkbox" name="power" value="850W 이상"> 850W 이상</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section">
+                    <h2>팬 개수</h2>
+                    <div class="checkbox-group-container">
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="fan_count" value="4팬"> 4팬</label>
+                            <label><input type="checkbox" name="fan_count" value="3팬"> 3팬</label>
+                            <label><input type="checkbox" name="fan_count" value="2팬"> 2팬</label>
+                            <label><input type="checkbox" name="fan_count" value="1팬"> 1팬</label>
+                            <label><input type="checkbox" name="fan_count" value="무팬"> 무팬</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section">
+                    <h2>가로(길이)</h2>
+                    <div class="checkbox-group-container">
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="length" value="350~359"> 350~359</label>
+                            <label><input type="checkbox" name="length" value="340~349"> 340~349</label>
+                            <label><input type="checkbox" name="length" value="330~339"> 330~339</label>
+                            <label><input type="checkbox" name="length" value="320~329"> 320~329</label>
+                            <label><input type="checkbox" name="length" value="310~319"> 310~319</label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="section">
+                    <h2>가격대</h2>
+                    <div>
+                        <input type="number" name="min_price" placeholder="최소 가격"> 원 ~ 
+                        <input type="number" name="max_price" placeholder="최대 가격"> 원
+                    </div>
+                </div>
+    
+                <div class="search-button">
+                    <button type="submit">검색</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    </html>
+    

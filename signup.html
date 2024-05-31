@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700&display=swap">
+    <title>회원가입 페이지</title>
+    <style>
+         /*--- section welcome ---*/
+        .welcome {
+        width: 100%;
+        height: 500px;
+        background-image: url("https://github.com/carusina/Final-SoftWare-Project/blob/GPUHunt_page/%E1%84%83%E1%85%A1%E1%86%AF.png?raw=true");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+
+        .welcome h1 {
+        color: #fff;
+        font-weight: 300;
+        font-size: 2rem;
+        }
+        /*---section welcom end---*/
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            padding: 0;
+        }
+        .signup-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .signup-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .signup-container input[type="text"],
+        .signup-container input[type="email"],
+        .signup-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px -10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .signup-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .signup-container button:hover {
+            background-color: #218838;
+        }
+        .signup-container .login-link {
+            margin-top: 10px;
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-container .login-link:hover {
+            text-decoration: underline;
+        }
+
+        
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+      text-decoration: none;
+    }
+    
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .card {
+        background: #f5f5f5;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        width: 250px;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        width: 100%;
+    }
+
+    .card h3 {
+        margin: 15px 0;
+    }
+
+    .card p {
+        color: #888;
+        font-size: 18px;
+        margin: 0 0 15px;
+    }
+    
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    /*드랍다운 nav*/
+    nav {
+      width: 100%;
+      height: 48px;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+      position: relative;
+    }
+
+    nav ul li a {
+      font-weight: 300;
+      color: #adadad;
+      transition: 600ms;
+    }
+
+    nav ul li a:hover {
+      color: #f5f5f7;
+    }
+
+    nav ul li .dropdown {
+      display: none;
+      position: absolute;
+      top: 170%;
+      left: 0;
+      background: #000;
+      padding: 10px 20px;
+      list-style: none;
+      border-radius: 4px;
+    }
+
+    nav ul li .dropdown li {
+      margin: 0;
+    }
+
+    nav ul li .dropdown li a {
+      padding: 10px 20px;
+      white-space: nowrap;
+      color: #fff;
+      display: block;
+    }
+
+    nav ul li:hover .dropdown {
+      display: block;
+    }
+    /*드랍다운 nav end*/
+    </style>
+</head>
+<body background class ="welcome">
+    <nav>
+        <ul>
+          <li class="menu-item"><a href="#">GPUHunt</a>
+            <ul class="dropdown">
+              <li><a href="#">Made by</a></li>
+              <li><a href="#">김민서</a></li>
+              <li><a href="#">김성환</a></li>
+              <li><a href="#">김형진</a></li>
+              <li><a href="#">송호영</a></li>
+              <li><a href="#">정지석</a></li>
+              <li><a href="#">조준혁</a></li>
+            </ul>
+          </li>
+          <li class="menu-item"><a href="#">Products</a>
+            <ul class="dropdown">
+              <li><a href="#">GPU 1</a></li>
+              <li><a href="#">GPU 2</a></li>
+              <li><a href="#">GPU 3</a></li>
+            </ul>
+          </li>
+          <li class="menu-item"><a href="#">About</a>
+            <ul class="dropdown">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Mission</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Contact</a></li>  
+          <li><a href="#"><i class="fas fa-search"></i></a></li> <!-- 챗봇 여기 들어가면 될듯--> 
+          <li><a href="#"><i class="fas fa-shopping-bag"></i></a></li>  
+        </ul>
+        <li class="menu-item"><a href="/login.html">로그인</a>
+      </nav>
+    <div class="signup-container">
+        <h2>회원가입</h2>
+        <form action="/signup" method="post">
+            <input type="text" name="name" placeholder="이름" required>
+            <input type="email" name="email" placeholder="이메일" required>
+            <input type="password" name="password" placeholder="비밀번호" required>
+            <button type="submit">회원가입</button>
+        </form>
+        <a href="/login.html" class="login-link">이미 계정이 있으신가요? 로그인</a>
+    </div>
+</body>
+</html>
