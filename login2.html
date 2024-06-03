@@ -217,24 +217,18 @@
       z-index: 5;
     }
   }
+
+  .logo {
+    margin-bottom: 2rem;
+  }
 </style>
 </head>
 <body>
 <div class="container right-panel-active">
-    <!-- Sign Up -->
-    <div class="container__form container--signup">
-      <form action="#" class="form" id="form1">
-        <h2 class="form__title">Sign Up</h2>
-        <input type="text" placeholder="User" class="input" />
-        <input type="email" placeholder="Email" class="input" />
-        <input type="password" placeholder="Password" class="input" />
-        <button class="btn">Sign Up</button>
-      </form>
-    </div>
-  
-    <!-- Sign In -->
-    <div class="container__form container--signin">
+     <!-- Sign In -->
+     <div class="container__form container--signin">
       <form action="#" class="form" id="form2">
+          <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo" weight = "300" height = "100"></a>
           <h2 class="form__title">Sign In</h2>
           <input type="email" placeholder="Email" class="input" />
           <input type="password" placeholder="Password" class="input" />
@@ -243,6 +237,19 @@
       </form>
   </div>
   
+  <!-- Sign Up -->
+<div class="container__form container--signup">
+  <form action="#" class="form" id="form1">
+    <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo" weight="300" height="100"></a>
+    <h2 class="form__title">Sign Up</h2>
+    <input type="text" placeholder="User" class="input" />
+    <input type="email" placeholder="Email" class="input" />
+    <input type="password" placeholder="Password" class="input" />
+    <button class="btn">Sign Up</button>
+  </form>
+</div>
+  
+   
     <!-- Overlay -->
     <div class="container__overlay">
       <div class="overlay">
@@ -273,6 +280,6 @@
     
     firstForm.addEventListener("submit", (e) => e.preventDefault());
     secondForm.addEventListener("submit", (e) => e.preventDefault());
-    </script>
+</script>
 </body>
 </html>
