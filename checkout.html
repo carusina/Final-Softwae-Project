@@ -1,251 +1,180 @@
 <!DOCTYPE html>
 <html lang="ko">
-<!-- Basic -->
-
 <head>
+    <title>GPU-HUNT - Check Out</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Site Metas -->
-    <title>GPU-HUNT - Check Out</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/hihello.css">
+     <!-- Chatbot CSS -->
+     <link rel="stylesheet" href="css/chatbot.css">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+            /* 드롭다운 메뉴 너비 조정 */
+            .dropdown-menu {
+                width: 100%; /* 드롭다운 메뉴를 전체 너비로 설정 */
+                max-width: 1200px; /* 최대 너비 설정 */
+                padding: 10px; /* 내부 패딩 설정 */
+            }
+    
+            /* 메뉴 열(column) 스타일 조정 */
+            .col-menu {
+                flex: 0 0 25%; /* 열 너비를 동일하게 분배 */
+                max-width: 50%;
+                padding: 10px; /* 각 열의 내부 패딩 설정 */
+            }
+    
+            /* 드롭다운 메뉴의 내부 요소 스타일 조정 */
+            .col-menu .content {
+                padding: 25px; /* 내부 패딩 조정 */
+            }
+    
+            /* 드롭다운 메뉴 제목 스타일 조정 */
+            .col-menu .title {
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+            .navbar-nav .dropdown-toggle::after {
+                display: none;
+            }
+            /* 검색 폼 스타일 */
+            form[action="/search"] {
+                position: relative;
+                display: inline-block;  
+                margin-top: 10px;
+            }
+            input[name="q"]:focus {
+                width: 290px;   /* 여기서 눌렀을 때 사이즈 조정하는거임 */
+            }
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+        .popup.active {
+            display: block;
+        }
+        .popup p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .popup button {
+            background-color: #da1212;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .popup button:hover {
+            background-color: #da1212;
+        }
+        .new-account-login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px); /* 적절한 높이를 지정해주세요 */
+            position: relative;
+            top: -150px; /* 원하는 만큼 요소를 위로 이동시킵니다 */
+        }
 
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+        .new-account-login .col-sm-6 {
+            text-align: center;
+        }
+    </style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        checkSession();
+    });
+    function checkSession() {
+        $.ajax({
+            url: "/check-session",  // 세션 상태를 확인하는 서버의 URL로 수정 필요
+            type: 'GET',
+            success: function(result) {
+                if (result) {
+                    // 세션이 유지되고 있으면 로그인 상태로 처리
+                    $("#login").hide();
+                    $("#logout").show(); 
+                } else {
+                    // 세션이 없으면 로그아웃 상태로 처리
+                    $("#login").show();
+                    $("#logout").hide();
+                }
+            }
+        });
+    }    
+</script>
 </head>
 
 <body>
-
-    <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> GPU 최저가 세일중
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% 부품 재고 떨이
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% 쿠폰 쓰기
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% 할인 지금 사야 됨
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 10% 할인 CPU 할인
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% - 80% 부품 재고 떨이
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 20% 쿠폰 쓰기
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 50% 할인 지금 사야 됨
-                                </li>
-                            </ul>
-                        </div>
+<script src="js/search.js"></script>
+<div class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            <li>
+                                <i class="fab fa-opencart"></i> GPU 최저가 세일중
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="custom-select-box">
-                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                        <option>₩ kor</option>
-                        <option>¥ JPY</option>
-                        <option>$ USD</option>
-                        <option>€ EUR</option>
-					</select>
-                    </div>
-                    <div class="right-phone-box">
-                        <p>1:1문의 : <a href="#"> 010-7777-7777</a></p>
-                    </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="right-phone-box">
+                    <p>1:1문의 : <a href="#"> 010-7777-7777</a></p>
+                </div>
+                <div id="login" style="display: none;">
                     <div class="our-link">
                         <ul>
-                            <li><a href="my-account.html">마이 페이지</a></li>
-                            <li><a href="login2.html">로그인</a></li>
-                            <li><a href="signup.html">회원 가입</a></li>
+                            <li><a href="/auth/login">로그인</a></li>
+                            <li><a href="/auth/signup">회원 가입</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="logout" style="display: none;">
+                    <div class="our-link">
+                        <ul>
+                            <li><a href="/my-account">{{nickname}}님의 마이 페이지</a></li>
+                            <li><a href="/auth/logout">로그아웃</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Main Top -->
-
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="logo" alt="" weight="150" height="80"></a>
-                </div>
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item"><a class="nav-link" href="index.html">홈</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">소개</a></li>
-                        <li class="dropdown megamenu-fw">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">제품</a>
-                            <ul class="dropdown-menu megamenu-content" role="menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Top</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="shop.html">CPU</a></li>
-                                                    <li><a href="shop.html">GPU</a></li>
-                                                    <li><a href="shop.html">Main-Board</a></li>
-                                                    <li><a href="shop.html">RAM</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Storage device</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="shop.html">SSD</a></li>
-                                                    <li><a href="shop.html">HDD</a></li>
-                                                    <li><a href="shop.html">ODD</a></li>
-                                                    <li><a href="shop.html">USB</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">I/O devices</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="shop.html">key-board</a></li>
-                                                    <li><a href="shop.html">Mouse</a></li>
-                                                    <li><a href="shop.html">Monitor</a></li>
-                                                    <li><a href="shop.html">Web-Cam</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-menu col-md-3">
-                                            <h6 class="title">Accessories</h6>
-                                            <div class="content">
-                                                <ul class="menu-col">
-                                                    <li><a href="shop.html">Router</a></li>
-                                                    <li><a href="shop.html">Speaker</a></li>
-                                                    <li><a href="shop.html">Headset</a></li>
-                                                    <li><a href="shop.html">CASE</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <!-- end col-3 -->
-                                    </div>
-                                    <!-- end row -->
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown active">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">나의 쇼핑</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="my-account.html">My Page</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="shop-detail.html">Shop Detail</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="service.html">서비스</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact-us.html">연락처</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        <li class="side-menu"><a href="#">
-						<i class="fa fa-shopping-bag"></i>
-                            <span class="badge">3</span>
-					</a></li>
-                    </ul>
-                </div>
-                <!-- End Atribute Navigation -->
-            </div>
-            <!-- Start Side Menu -->
-            <div class="side">
-                <a href="#" class="close-side"><i class="fa fa-times"></i></a>
-                <li class="cart-box">
-                    <ul class="cart-list">
-                        <li>
-                            <a href="#" class="photo"><img src="images/cart1.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">갤럭시 GALAX 지포스 RTX 4060 Ti OC D6 8GB  </a></h6>
-                            <p>1x - <span class="price">544,680원 </span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/cart2.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">GIGABYTE 지포스 RTX 3060 GAMING OC V2 D6 8GB 제이씨현 </a></h6>
-                            <p>1x - <span class="price">355,970원</span></p>
-                        </li>
-                        <li>
-                            <a href="#" class="photo"><img src="images/cart3.jpg" class="cart-thumb" alt="" /></a>
-                            <h6><a href="#">ASUS DUAL 라데온 RX 7600 O8G V2 OC D6 8GB </a></h6>
-                            <p>1x - <span class="price">336,000원 </span></p>
-                        </li>
-                        <li class="total">
-                            <a href="#" class="btn btn-default hvr-hover btn-cart">장바구니</a>
-                            <span class="float-right"><strong>총합</strong>: 1,237,620원</span>
-                        </li>
-                    </ul>
-                </li>
-            </div>
-            <!-- End Side Menu -->
-        </nav>
-        <!-- End Navigation -->
-    </header>
-    <!-- End Main Top -->
-
-    <!-- Start Top Search -->
-    <div class="top-search">
-        <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
-        </div>
-    </div>
-    <!-- End Top Search -->
+</div>
+    <div id="plus_1"></div>
+    <script>
+        $(function(){
+            $("#plus_1").load("body.html #plus_1");
+        });
+    </script>
 
     <!-- Start All Title Box -->
     <div class="all-title-box">
@@ -267,427 +196,98 @@
     <div class="cart-box-main">
         <div class="container">
             <div class="row new-account-login">
-                <div class="col-sm-6 col-lg-6 mb-3">
+                <div class="col-sm-6 col-lg-6 mb-3" id="login-section">
                     <div class="title-left">
-                        <h3>Account Login</h3>
+                        <h3>본인 인증</h3><br><br>
                     </div>
-                    <h5><a data-toggle="collapse" href="#formLogin" role="button" aria-expanded="false">로그인하려면 여기를 클릭하세요</a></h5>
-                    <form class="mt-3 collapse review-form-box" id="formLogin">
+                    <form class="mt-3 review-form-box" id="formLogin">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="InputEmail" class="mb-0">Email Address</label>
-                                <input type="email" class="form-control" id="InputEmail" placeholder="Enter Email"> </div>
+                                <label for="InputEmail" class="mb-0">Id</label><br><br>
+                                <input type="text" class="form-control" id="InputEmail" placeholder= {{nickname}} readonly>
+                            </div>
                             <div class="form-group col-md-6">
-                                <label for="InputPassword" class="mb-0">Password</label>
-                                <input type="password" class="form-control" id="InputPassword" placeholder="Password"> </div>
-                        </div>
-                        <button type="submit" class="btn hvr-hover">Login</button>
+                                <label for="InputPassword" class="mb-0">Password</label><br><br>
+                                <input type="password" class="form-control" id="InputPassword" placeholder="Password" required>
+                            </div>
+                        </div><br><br>
+                        <button class="btn hvr-hover" onclick="submitLoginForm()">Login</button>
                     </form>
                 </div>
-                <div class="col-sm-6 col-lg-6 mb-3">
+                <div class="col-sm-6 col-lg-6 mb-3" id="register-section" style="display:none;">
                     <div class="title-left">
-                        <h3>Create New Account</h3>
+                        <h3>회원정보수정</h3>
                     </div>
-                    <h5><a data-toggle="collapse" href="#formRegister" role="button" aria-expanded="false">등록하려면 여기를 클릭하세요</a></h5>
-                    <form class="mt-3 collapse review-form-box" id="formRegister">
+                    <form class="mt-3 review-form-box" id="formRegister" action="/auth/edit_process" method="post">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="InputName" class="mb-0">First Name</label>
-                                <input type="text" class="form-control" id="InputName" placeholder="First Name"> </div>
+                                <label for="InputLastname" class="mb-0">Phone number</label><br><br>
+                                <input type="text" class="form-control" id="InputLastname" name="phone_number" placeholder="Phone number" required>
+                            </div>
                             <div class="form-group col-md-6">
-                                <label for="InputLastname" class="mb-0">Last Name</label>
-                                <input type="text" class="form-control" id="InputLastname" placeholder="Last Name"> </div>
+                                <label for="InputEmail1" class="mb-0">Password</label><br><br>
+                                <input type="password" class="form-control" id="InputEmail1" name="password" placeholder="Password" required>
+                            </div>
                             <div class="form-group col-md-6">
-                                <label for="InputEmail1" class="mb-0">Email Address</label>
-                                <input type="email" class="form-control" id="InputEmail1" placeholder="Enter Email"> </div>
-                            <div class="form-group col-md-6">
-                                <label for="InputPassword1" class="mb-0">Password</label>
-                                <input type="password" class="form-control" id="InputPassword1" placeholder="Password"> </div>
-                        </div>
+                                <label for="InputPassword1" class="mb-0">Confirm password</label><br><br>
+                                <input type="password" class="form-control" id="InputPassword1" name="password2" placeholder="Confirm password" required>
+                            </div>
+                        </div><br><br>
                         <button type="submit" class="btn hvr-hover">Register</button>
                     </form>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-lg-6 mb-3">
-                    <div class="checkout-address">
-                        <div class="title-left">
-                            <h3>Billing address</h3>
-                        </div>
-                        <form class="needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="firstName">First name *</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid first name is required. </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="lastName">Last name *</label>
-                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                    <div class="invalid-feedback"> Valid last name is required. </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="username">Username *</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="username" placeholder="" required>
-                                    <div class="invalid-feedback" style="width: 100%;"> Your username is required. </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email">Email Address *</label>
-                                <input type="email" class="form-control" id="email" placeholder="">
-                                <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address">Address *</label>
-                                <input type="text" class="form-control" id="address" placeholder="" required>
-                                <div class="invalid-feedback"> Please enter your shipping address. </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address2">Address 2 *</label>
-                                <input type="text" class="form-control" id="address2" placeholder=""> </div>
-                            <div class="row">
-                                <div class="col-md-5 mb-3">
-                                    <label for="country">Country *</label>
-                                    <select class="wide w-100" id="country">
-									<option value="Choose..." data-display="Select">Choose...</option>
-									<option value="United States">United States</option>
-                                    <option value="United States">korea</option>
-								</select>
-                                    <div class="invalid-feedback"> Please select a valid country. </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="state">State *</label>
-                                    <select class="wide w-100" id="state">
-									<option data-display="Select">Choose...</option>
-									<option>California</option>
-                                    <option>Busan</option>
-                                    <option>Seoul</option>
-								</select>
-                                    <div class="invalid-feedback"> Please provide a valid state. </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="zip">Zip *</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                                    <div class="invalid-feedback"> Zip code required. </div>
-                                </div>
-                            </div>
-                            <hr class="mb-4">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="same-address">
-                                <label class="custom-control-label" for="same-address">배송지 주소가 청구지 주소와 동일합니다.</label>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="save-info">
-                                <label class="custom-control-label" for="save-info">다음 배송에도 똑같은 정보를 쓰겠습니다.</label>
-                            </div>
-                            <hr class="mb-4">
-                            <div class="title"> <span>Payment</span> </div>
-                            <div class="d-block my-3">
-                                <div class="custom-control custom-radio">
-                                    <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="credit">Credit card</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="debit">Debit card</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="cc-name">Name on card</label>
-                                    <input type="text" class="form-control" id="cc-name" placeholder="" required> <small class="text-muted">Full name as displayed on card</small>
-                                    <div class="invalid-feedback"> Name on card is required </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="cc-number">Credit card number</label>
-                                    <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                    <div class="invalid-feedback"> Credit card number is required </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">Expiration</label>
-                                    <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                                    <div class="invalid-feedback"> Expiration date required </div>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="cc-expiration">CVV</label>
-                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                    <div class="invalid-feedback"> Security code required </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="payment-icon">
-                                        <ul>
-                                            <li><img class="img-fluid" src="images/payment-icon/1.png" alt=""></li>
-                                            <li><img class="img-fluid" src="images/payment-icon/2.png" alt=""></li>
-                                            <li><img class="img-fluid" src="images/payment-icon/3.png" alt=""></li>
-                                            <li><img class="img-fluid" src="images/payment-icon/5.png" alt=""></li>
-                                            <li><img class="img-fluid" src="images/payment-icon/7.png" alt=""></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="mb-1"> </form>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-6 mb-3">
-                    <div class="row">
-                        <div class="col-md-12 col-lg-12">
-                            <div class="shipping-method-box">
-                                <div class="title-left">
-                                    <h3>Shipping Method</h3>
-                                </div>
-                                <div class="mb-4">
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption1" name="shipping-option" class="custom-control-input" checked="checked" type="radio">
-                                        <label class="custom-control-label" for="shippingOption1">표준 배송</label> <span class="float-right font-weight-bold">무료</span> </div>
-                                    <div class="ml-4 mb-2 small">(3-7일 소요)</div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption2" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption2">특급 배송</label> <span class="float-right font-weight-bold">10,000원</span> </div>
-                                    <div class="ml-4 mb-2 small">(2-4일 소요)</div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="shippingOption3" name="shipping-option" class="custom-control-input" type="radio">
-                                        <label class="custom-control-label" for="shippingOption3">다음 영업일</label> <span class="float-right font-weight-bold">20,000원</span> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-12">
-                            <div class="odr-box">
-                                <div class="title-left">
-                                    <h3>Shopping cart</h3>
-                                </div>
-                                <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> 갤럭시 GALAX 지포스 RTX 4060 Ti OC D6 8GB</a>
-                                            <div class="small text-muted">Price: 544,680원 <span class="mx-2">|</span> 수량: 1 <span class="mx-2">|</span> Subtotal: 544,680원</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> GIGABYTE 지포스 RTX 3060 GAMING OC V2 D6 8GB 제이씨현</a>
-                                            <div class="small text-muted">Price: 355,970원 <span class="mx-2">|</span> 수량: 1 <span class="mx-2">|</span> Subtotal: 355,970원</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> ASUS DUAL 라데온 RX 7600 O8G V2 OC D6 8GB</a>
-                                            <div class="small text-muted">Price: 336,000원 <span class="mx-2">|</span> 수량: 1 <span class="mx-2">|</span> 336,000원</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-12">
-                            <div class="order-box">
-                                <div class="title-left">
-                                    <h3>Your order</h3>
-                                </div>
-                                <div class="d-flex">
-                                    <div class="font-weight-bold">Product</div>
-                                    <div class="ml-auto font-weight-bold">Total</div>
-                                </div>
-                                <hr class="my-1">
-                                <div class="d-flex">
-                                    <h4>Sub Total</h4>
-                                    <div class="ml-auto font-weight-bold"> 1,237,620원 </div>
-                                </div>
-                                <div class="d-flex">
-                                    <h4>할인</h4>
-                                    <div class="ml-auto font-weight-bold"> 123,762원 </div>
-                                </div>
-                                <hr class="my-1">
-                                <div class="d-flex">
-                                    <h4>쿠폰 할인</h4>
-                                    <div class="ml-auto font-weight-bold"> 12,376원 </div>
-                                </div>
-                                <div class="d-flex">
-                                    <h4>부가세</h4>
-                                    <div class="ml-auto font-weight-bold">1,237원 </div>
-                                </div>
-                                <div class="d-flex">
-                                    <h4>배송료</h4>
-                                    <div class="ml-auto font-weight-bold">무료</div>
-                                </div>
-                                <hr>
-                                <div class="d-flex gr-total">
-                                    <h5>Grand Total</h5>
-                                    <div class="ml-auto h5"> 1,102,719원 </div>
-                                </div>
-                                <hr> </div>
-                        </div>
-                        <div class="col-12 d-flex shopping-box"> <a href="checkout.html" class="ml-auto btn hvr-hover">Place Order</a> </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-    <!-- End Cart -->
 
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="popup" id="popup">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Close</button>
     </div>
-    <!-- End Instagram Feed  -->
+    <script>
+        function submitLoginForm() {
+            event.preventDefault();
+            // 폼 데이터 가져오기
+            const password = document.getElementById('InputPassword').value;
+            // AJAX를 이용해 서버로 데이터 전송
+            $.ajax({
+                url: "/check_password",
+                type: "POST",
+                data: {password: password},
+                success: function(res) {
+                    // 서버에서 받은 결과(response)에 따라 처리
+                    if (res === true) {
+                        document.getElementById('login-section').style.display = 'none';
+                        document.getElementById('register-section').style.display = 'block';
+                    } else {
+                        // 로그인 실패 시 메시지 출력 등의 처리
+                        alert("비밀번호가 일치하지 않습니다.");
+                    }
+                }
+            });
+        }
+    </script>
+    <script>
+        function closePopup() {
+            document.getElementById('popup').classList.remove('active');
+            window.location.href = '/my-account';
+        }
+    </script>
 
-
-    <!-- Start Footer  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-widget">
-                            <h4>About GPU-HUNT</h4>
-                            <p>당신의 그래픽 카드 쇼핑을 단순하고 경제적으로 만들어줄 GPU-hunt에 오신 것을 환영합니다!<br> GPU-hunt는 최신 그래픽 카드를 가장 저렴한 가격에 찾을 수 있도록 도와주는 최저가 검색 전문 사이트입니다.
-                            </p>
-                            <p>왜 GPU-hunt인가?<br>
-                                완전 최저가 보장: 다양한 온라인 쇼핑몰을 한눈에 비교하여 언제나 최저가를 제공합니다.<br>
-                                실시간 가격 비교: 실시간으로 업데이트되는 가격 정보로 최신 최저가를 놓치지 않습니다.<br>
-                                사용자 친화적 인터페이스: 간편하고 직관적인 검색 기능을 통해 원하는 제품을 빠르게 찾을 수 있습니다.
-                                </p>
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="#">소개</a></li>
-                                <li><a href="#">제품</a></li>
-                                <li><a href="#">나의 쇼핑</a></li>
-                                <li><a href="#"> 광고 &amp; 협력문의 </a></li>
-                                <li><a href="#">서비스</a></li>
-                                <li><a href="#">연락처</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link-contact">
-                            <h4>Contact Us</h4>
-                            <ul>
-                                <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>주소: 부산광역시 사하구<br>사하구 낙동대로 550번길 37<br> S06-635 </p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"></i>전화번호: <a href="tel:+1-888705770">010-7777-7777</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope"></i>이메일: <a href="mailto:contactinfo@gmail.com">GPU-HUNT@gmail.com</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer  -->
-
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2024 <a href="#">GPU-HUNT</a> Design By : 조준혁<br>github site address:
-            <a href="https://github.com/carusina/Final-SoftWare-Project"> Final-SoftWare-Project 
-            </a></p>
-    </div>
-    <!-- End copyright  -->
-
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
+    <div id="plus_2"></div>
+    <script>
+        $(function(){
+            $("#plus_2").load("footer.html #plus_2");
+        });
+    </script>
+      <!-- 챗봇 토글 버튼 -->
+      <img id="chatbot-toggle" src="https://github.com/carusina/Final-SoftWare-Project/blob/ChatBot/%EC%B1%97%EB%B4%87.png?raw=true" alt="챗봇 열기" width="100" height="100">
+    
+      <!-- 챗봇 창 -->
+      <div id="chatbot" style="display:none;">
+          <iframe src="http://localhost:7860" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+    
     <!-- ALL JS FILES -->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -704,6 +304,6 @@
     <script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/chatbot.js"></script>
 </body>
-
 </html>
