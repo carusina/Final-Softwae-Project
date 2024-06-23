@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <title>GPU-HUNT - Service</title>
+    <title>GPU-HUNT - About us</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,30 +20,29 @@
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            checkSession();
-        });
-        function checkSession() {
-            $.ajax({
-                url: "/check-session",  // 세션 상태를 확인하는 서버의 URL로 수정 필요
-                type: 'GET',
-                success: function(result) {
-                    if (result) {
-                        // 세션이 유지되고 있으면 로그인 상태로 처리
-                        $("#login").hide();
-                        $("#logout").show(); 
-                    } else {
-                        // 세션이 없으면 로그아웃 상태로 처리
-                        $("#login").show();
-                        $("#logout").hide();
-                    }
-                }
-            });
-        }    
-    </script>
 </head>
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        checkSession();
+    });
+    function checkSession() {
+        $.ajax({
+            url: "/check-session",  // 세션 상태를 확인하는 서버의 URL로 수정 필요
+            type: 'GET',
+            success: function(result) {
+                if (result) {
+                    // 세션이 유지되고 있으면 로그인 상태로 처리
+                    $("#login").hide();
+                    $("#logout").show(); 
+                } else {
+                    // 세션이 없으면 로그아웃 상태로 처리
+                    $("#login").show();
+                    $("#logout").hide();
+                }
+            }
+        });
+    }    
+</script>
 <body>
     <script src="js/search.js"></script>
     <div class="main-top">
@@ -95,10 +94,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Services</h2>
+                    <h2>소개</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Services</li>
+                        <li class="breadcrumb-item active">About us</li>
                     </ul>
                 </div>
             </div>
@@ -106,50 +105,55 @@
     </div>
     <!-- End All Title Box -->
 
-    <!-- Start Services  -->
-    <div class="services-box-main">
+    <!-- Start About Page  -->
+    <div class="about-box-main">
         <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="noo-sh-title">We are <span>GPU-HUNT</span></h2>
+                    <p>GPU-hunt - 최저가 그래픽 카드 쇼핑의 종착지
+                        당신의 그래픽 카드 쇼핑을 단순하고 경제적으로 만들어줄 GPU-hunt에 오신 것을 환영합니다!
+                         GPU-hunt는 최신 그래픽 카드를 가장 저렴한 가격에 찾을 수 있도록 도와주는 최저가 검색 전문 사이트입니다.<br><br>                        
+                        왜 GPU-hunt인가?<br>
+                        완전 최저가 보장: 다양한 온라인 쇼핑몰을 한눈에 비교하여 언제나 최저가를 제공합니다.<br>
+                        실시간 가격 비교: 실시간으로 업데이트되는 가격 정보로 최신 최저가를 놓치지 않습니다.<br>
+                        사용자 친화적 인터페이스: 간편하고 직관적인 검색 기능을 통해 원하는 제품을 빠르게 찾을 수 있습니다.<br>
+                        알림 서비스: 관심 있는 제품의 가격 변동을 실시간으로 알려주는 알림 서비스로 최적의 구매 타이밍을 놓치지 마세요.<br><br>
+                    </p>
+                    <p>GPU-hunt의 특별한 기능<br>
+                        가격 추적 기능: 원하는 제품의 가격 변동을 추적하여 최저가에 구매할 수 있는 기회를 제공합니다.<br>
+                        제품 리뷰 및 평점: 다른 사용자들의 리뷰와 평점을 통해 제품의 성능과 만족도를 미리 확인할 수 있습니다.<br>
+                        할인 및 쿠폰 정보: 추가적인 할인 혜택과 쿠폰 정보를 통해 더 많은 절약을 실현하세요.<br>
+                        GPU-hunt와 함께라면, 더 이상 수많은 사이트를 돌아다니며 가격 비교에 시간을 낭비할 필요가 없습니다.<br>
+                         최고의 그래픽 카드를 최저가로 만나보세요!
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner-frame"> <img class="img-thumbnail img-fluid" src="images/about-img.jpg" alt="" /></div>
+                </div>
+            </div>
             <div class="row my-5">
                 <div class="col-sm-6 col-lg-4">
                     <div class="service-block-inner">
-                        <h3>OUR MISSION</h3>
-                        <p>GPU Hunt의 사명은 기술 애호가들에게 최신 GPU 가격 정보를 제공하여 그들의 선택을 돕는 것입니다. 우리는 다양한 소스에서 데이터를 수집하여 최저가를 간편하게 찾을 수 있도록 합니다. 우리의 목표는 사용자의 시간과 비용을 절약하는 것입니다. 우리는 투명하고 사용자 친화적인 플랫폼을 만드는 데 헌신하고 있습니다. 고성능 컴퓨팅을 누구나 쉽게 접근할 수 있게 만드는 것이 우리의 신념입니다. </p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="service-block-inner">
-                        <h3>OUR VISION</h3>
-                        <p>우리는 최고의 GPU 딜을 찾는 것이 쉽고 간단한 미래를 꿈꿉니다. GPU Hunt는 기술적 장벽을 허물고 누구나 쉽게 최적의 제품을 찾을 수 있도록 합니다. 우리의 비전은 전 세계의 모든 사용자가 최상의 가격과 품질을 경험하는 것입니다. 기술이 주는 혜택을 모두가 누릴 수 있는 세상을 만드는 것이 우리의 궁극적인 목표입니다. 더 나은 기술 환경을 위해 끊임없이 혁신해 나가겠습니다 </p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="service-block-inner">
-                        <h3>OUR PHILOSOPHY</h3>
-                        <p>우리의 철학은 신뢰성과 투명성을 바탕으로 합니다. 우리는 정확하고 공정한 정보를 제공하여 사용자들이 현명한 결정을 내릴 수 있도록 돕습니다. 모든 사용자가 만족할 수 있는 서비스를 제공하는 것이 우리의 철학입니다. 기술과 가격의 균형을 유지하며 사용자 경험을 최우선으로 생각합니다. 항상 사용자들의 의견을 반영하여 서비스 품질을 향상시키기 위해 노력합니다. </p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="service-block-inner">
                         <h3>We are Trusted</h3>
-                        <p>GPU Hunt는 사용자들로부터 신뢰받는 플랫폼입니다. 우리는 정확한 데이터를 바탕으로 최저가를 제공하여 신뢰를 쌓아왔습니다. 투명한 정보 제공과 신속한 업데이트로 신뢰성을 유지합니다. 사용자들의 피드백을 적극 반영하여 서비스 개선에 힘쓰고 있습니다. 우리의 목표는 항상 신뢰할 수 있는 정보를 제공하는 것입니다. </p>
+                        <p>GPU-HUNT는 다양한 온라인 쇼핑몰의 가격을 실시간으로 비교하여 최저가를 제공합니다. 최신 가격 정보를 신속하게 업데이트하여 항상 최적의 구매 결정을 돕습니다. 투명하고 신뢰성 있는 서비스로 많은 사용자들에게 높은 평가를 받고 있습니다. </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                     <div class="service-block-inner">
                         <h3>We are Professional</h3>
-                        <p>우리는 전문가 팀으로 구성되어 있으며, 최상의 서비스를 제공하기 위해 노력합니다. 최신 기술과 데이터를 활용하여 사용자들에게 최고의 경험을 제공합니다. 우리의 모든 과정은 전문성과 정확성을 바탕으로 이루어집니다. 사용자의 요구에 맞춘 맞춤형 서비스를 제공하며, 항상 최고의 품질을 유지합니다. 전문성을 바탕으로 사용자 만족도를 최우선으로 생각합니다.
-
-                        </p>
+                        <p>
+                            GPU-HUNT는 최신 그래픽 카드 시장에 대한 깊은 이해와 전문 지식을 바탕으로 최적의 제품을 추천합니다. 다양한 온라인 쇼핑몰의 데이터를 정확히 분석하여 신뢰할 수 있는 최저가 정보를 제공합니다. 사용자들에게 전문적이고 정확한 정보를 제공하여 최고의 구매 결정을 도와드립니다.</p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-4">
                     <div class="service-block-inner">
-                        <h3>OUR STORIES</h3>
-                        <p>GPU Hunt의 이야기는 사용자의 필요에서 시작되었습니다. 우리는 기술 애호가들의 불편을 해소하고자 이 플랫폼을 만들었습니다. 매일 새로운 도전과 기회를 맞이하며 성장해 나가고 있습니다. 우리의 성공 스토리는 사용자들과 함께 만들어가는 것입니다. 앞으로도 더 나은 서비스를 제공하기 위해 끊임없이 노력하겠습니다.</p>
+                        <h3>We are Expert</h3>
+                        <p>GPU-HUNT는 사용자 친화적인 인터페이스로 누구나 쉽게 최저가를 찾을 수 있습니다. 그래픽 카드 시장의 트렌드를 반영한 추천 제품 목록을 제공합니다. 다양한 리뷰와 평점을 통해 사용자들에게 신뢰성 높은 정보를 제공합니다. </p>
                     </div>
                 </div>
             </div>
-
+          
             <div class="row my-4">
                 <div class="col-12">
                     <h2 class="noo-sh-title">Meet Our Team</h2>
@@ -283,20 +287,21 @@
             </div>
         </div>
     </div>
-    <!-- End Services -->
+ 
+    <!-- End About Page -->
+      <!-- 챗봇 토글 버튼 -->
+      <img id="chatbot-toggle" src="https://github.com/carusina/Final-SoftWare-Project/blob/ChatBot/%EC%B1%97%EB%B4%87.png?raw=true" alt="챗봇 열기" width="100" height="100">
+    
+      <!-- 챗봇 창 -->
+      <div id="chatbot" style="display:none;">
+          <iframe src="http://localhost:7860" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
 
     <div id="plus_2"></div>
     <script>
         $(function(){
             $("#plus_2").load("footer.html #plus_2")});
     </script>
-      <!-- 챗봇 토글 버튼 -->
-      <img id="chatbot-toggle" src="https://github.com/carusina/Final-SoftWare-Project/blob/ChatBot/%EC%B1%97%EB%B4%87.png?raw=true"alt="챗봇 열기" width="100" height="100">
-    
-      <!-- 챗봇 창 -->
-      <div id="chatbot" style="display:none;">
-          <iframe src="http://localhost:7860" width="100%" height="100%" frameborder="0"></iframe>
-      </div>
 
     <!-- ALL JS FILES -->
     <script src="js/jquery-3.2.1.min.js"></script>
