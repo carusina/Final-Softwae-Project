@@ -100,4 +100,35 @@ router.post('/signup_process', function(request, response) {
         response.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
         document.location.href="/auth/signup";</script>`);
       }});
+
+// 정보 수정
+router.post('/edit_process', function (req, res) {
+    var id = req.session.nickname;
+    var phone_number = req.body.phone_number;
+    var password = req.body.password;    
+    var password2 = req.body.password2;
+    if(!validCallNumberCheck(phone_number)){
+        res.send(`<script type="text/javascript">alert("유효하지 않은 전화번호 입니다."); 
+        document.location.href="/checkout";</script>`); 
+    } else if (phone_number && password && password2) { 
+        phone_number = phone_number.replace(/-/g,'');
+        db.query('SELECT * FROM users WHERE phone_number = ?', [phone_number], function(error, results, fields) {
+            if (error) throw error;
+            if (results.length <= 0 && password == password2) {     // DB에 같은 이름의 회원아이디가 없고, 비밀번호가 올바르게 입력된 경우 
+                db.query('UPDATE users SET phone_number = ?, password = ? WHERE id = ?', [phone_number, password, id], function (error, data) {
+                    if (error) throw error;
+                    res.send(`<script type="text/javascript">alert("회원수정이 완료되었습니다!");
+                    document.location.href="/my-account";</script>`);
+                });
+            } else if (password != password2) {                     // 비밀번호가 올바르게 입력되지 않은 경우
+                res.send(`<script type="text/javascript">alert("입력된 비밀번호가 서로 다릅니다."); 
+                document.location.href="/checkout";</script>`);    
+            } else {                                                  // DB에 같은 전화번호가 있는 경우
+                res.send(`<script type="text/javascript">alert("이미 존재하는 전화번호 입니다."); 
+                document.location.href="/checkout";</script>`);    
+            }});
+    } else {        // 입력되지 않은 정보가 있는 경우
+      res.send(`<script type="text/javascript">alert("입력되지 않은 정보가 있습니다."); 
+      document.location.href="/checkout";</script>`);
+    }});
 module.exports = router;
