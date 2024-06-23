@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>검색 결과</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/hihello.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .card {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .card img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .card img {
+            width: 150px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .card h2 {
+            margin: 0;
+        }
+        .card p {
+            margin: 5px 0;
+        }
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #777;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .no-result-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .no-result-container img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            checkSession();
+        });
+        function checkSession() {
+            $.ajax({
+                url: "/check-session",  // 세션 상태를 확인하는 서버의 URL로 수정 필요
+                type: 'GET',
+                success: function(result) {
+                    if (result) {
+                        // 세션이 유지되고 있으면 로그인 상태로 처리
+                        $("#login").hide();
+                        $("#logout").show(); 
+                    } else {
+                        // 세션이 없으면 로그아웃 상태로 처리
+                        $("#login").show();
+                        $("#logout").hide();
+                    }
+                }
+            });
+        }    
+    </script>
+</head>
+<body>
+<script src="js/search.js"></script>
+<div class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            <li>
+                                <i class="fab fa-opencart"></i> GPU 최저가 세일중
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="right-phone-box">
+                    <p>1:1문의 : <a href="#"> 010-7777-7777</a></p>
+                </div>
+                <div id="login" style="display: none;">
+                    <div class="our-link">
+                        <ul>
+                            <li><a href="/auth/login">로그인</a></li>
+                            <li><a href="/auth/signup">회원 가입</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="logout" style="display: none;">
+                    <div class="our-link">
+                        <ul>
+                            <li><a href="/my-account">{{nickname}}님의 마이 페이지</a></li>
+                            <li><a href="/auth/logout">로그아웃</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="plus_1"></div>
+    <script>
+        $(function(){
+            $("#plus_1").load("body.html #plus_1")});
+    </script>
+
+    <div class="container">
+        <% if (!results || results.length === 0) { %>
+            <div class="no-result-container">
+                <div class="no-results">검색 결과가 없습니다.</div>
+                <img class="no-result" src="https://github.com/carusina/Final-SoftWare-Project/blob/search/no-result.png?raw=true" alt="no_result">
+            </div>
+        <% } else { %>
+            <% results.forEach(function(result) { %>
+                <div class="card">
+                    <img src="<%= result.image %>?raw=true" alt="<%= result.pname %>">
+                    <div>
+                        <h2><%= result.pname %></h2>
+                        <p>제조사: <%= result.madeby %></p>
+                        <p>칩셋: <%= result.chipset %></p>
+                        <p>메모리: <%= result.memory %> GB</p>
+                        <p>전력: <%= result.power %> W</p>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+
+    <div id="plus_2"></div>
+    <script>
+        $(function(){
+            $("#plus_2").load("footer.html #plus_2")});
+    </script>
+
+    <!-- ALL JS FILES -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>
