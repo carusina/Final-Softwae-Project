@@ -112,6 +112,21 @@ app.get('/notifications', function (req, res) {
   const htmlPath = path.resolve(__dirname + '/notifications.html');
   res.sendFile(htmlPath);
 });
+app.get('/getMem', function(req, res) {
+  db.query("select * from users;", function (err, result) {
+      if (err) throw err;
+      else {
+          res.json(result);
+      }
+  });
+});
+app.get('/delMem', function(req,res) {
+  var id = req.query.id;
+  db.query("DELETE FROM users WHERE id = ?;", [id], function(err) {
+      if (err) throw err; 
+  });
+});
+
 app.get('/charts', function (req, res) {
   const htmlPath = path.resolve(__dirname + '/charts.html');
   res.sendFile(htmlPath);
