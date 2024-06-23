@@ -1,0 +1,71 @@
+/* 드롭다운 메뉴 너비 조정 */
+.dropdown-menu {
+    width: 100%; /* 드롭다운 메뉴를 전체 너비로 설정 */
+    max-width: 1200px; /* 최대 너비 설정 */
+    padding: 10px; /* 내부 패딩 설정 */
+}
+
+/* 메뉴 열(column) 스타일 조정 */
+.col-menu {
+    flex: 0 0 25%; /* 열 너비를 동일하게 분배 */
+    max-width: 50%;
+    padding: 10px; /* 각 열의 내부 패딩 설정 */
+}
+
+/* 드롭다운 메뉴의 내부 요소 스타일 조정 */
+.col-menu .content {
+    padding: 25px; /* 내부 패딩 조정 */
+}
+
+/* 드롭다운 메뉴 제목 스타일 조정 */
+.col-menu .title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.navbar-nav .dropdown-toggle::after {
+    display: none;
+}
+/* 검색 폼 스타일 */
+form[action="/search"] {
+    position: relative;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+input[name="q"] {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;  /* 둥근 모서리로 변경 */
+    font-size: 14px;
+    width: 200px;
+    transition: width 0.3s ease-in-out;
+}
+
+input[name="q"]:focus {
+    width: 300px;   /* 여기서 눌렀을 때 사이즈 조정하는거임 */
+}
+
+button[type="submit"] {
+    background-color: #da1212;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;  /* 둥근 모서리로 변경 */
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button[type="submit"]:hover {
+    background-color: black;
+}
+/* 네비게이션 링크 스타일 */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: red !important; /* 글자를 빨간색으로 변경 */
+}
+
+/* 활성화된(클릭된) 링크 스타일 */
+.navbar-nav .nav-link.active {
+    color: red !important; /* 글자를 빨간색으로 변경 */
+    font-weight: bold; /* 진해지도록 폰트 두께 변경 */
+}
