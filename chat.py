@@ -1,7 +1,7 @@
 import gradio as gr
 import openai
 
-openai.api_key = ''
+openai.api_key = '---'
 
 def answer(state, state_chatbot, text):
     messages = state + [{
@@ -31,7 +31,6 @@ def answer(state, state_chatbot, text):
 
     return state, state_chatbot, state_chatbot
 
-
 with gr.Blocks(css='#chatbot .overflow-y-auto{height:750px}') as demo:
     state = gr.State([{
         'role': 'system',
@@ -40,21 +39,23 @@ with gr.Blocks(css='#chatbot .overflow-y-auto{height:750px}') as demo:
     state_chatbot = gr.State([])
 
     with gr.Row():
-        gr.HTML("""<div style="text-align: center; max-width: 500px; margin: 0 auto;">
-            <div>
-                <h1>GPUHunt</h1>
-            </div>
-            <p style="margin-bottom: 10px; font-size: 94%">
-                Blog <a href="https://yunwoong.tistory.com/">Be Original</a>
-            </p>
-        </div>""")
+        gr.HTML(f"""<div style="text-align: center; max-width: 500px; margin: 20px auto; padding: 20px; border-radius: 15px; background-color: #f9f9f9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+    <div>
+        <h1 style="font-size: 2.5em; color: #333; margin-bottom: 10px;">GPUHunt</h1>
+    </div>
+    <p style="margin-bottom: 10px; font-size: 1em; color: #666;">
+        무엇이든 물어보세요! 
+    </p>
+</div>
+""")
 
     with gr.Row():
         chatbot = gr.Chatbot(elem_id='chatbot')
 
     with gr.Row():
-        txt = gr.Textbox(show_label=False, placeholder='Send a message...')
+        txt = gr.Textbox(show_label=False, placeholder='Send a message...', elem_id='txt')
 
+    demo.load(None, [state, state_chatbot])
     txt.submit(answer, [state, state_chatbot, txt], [state, state_chatbot, chatbot])
     txt.submit(lambda: '', None, txt)
 
