@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>GPU-HUNT - About us</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/hihello.css">
+     <!-- Chatbot CSS -->
+     <link rel="stylesheet" href="css/chatbot.css">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<script type="text/javascript">
+    $(document).ready(function() {
+        checkSession();
+    });
+    function checkSession() {
+        $.ajax({
+            url: "/check-session",  // 세션 상태를 확인하는 서버의 URL로 수정 필요
+            type: 'GET',
+            success: function(result) {
+                if (result) {
+                    // 세션이 유지되고 있으면 로그인 상태로 처리
+                    $("#login").hide();
+                    $("#logout").show(); 
+                } else {
+                    // 세션이 없으면 로그아웃 상태로 처리
+                    $("#login").show();
+                    $("#logout").hide();
+                }
+            }
+        });
+    }    
+</script>
+<body>
+    <script src="js/search.js"></script>
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> GPU 최저가 세일중
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="right-phone-box">
+                        <p>1:1문의 : <a href="#"> 010-7777-7777</a></p>
+                    </div>
+                    <div id="login" style="display: none;">
+                        <div class="our-link">
+                            <ul>
+                                <li><a href="/auth/login">로그인</a></li>
+                                <li><a href="/auth/signup">회원 가입</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="logout" style="display: none;">
+                        <div class="our-link">
+                            <ul>
+                                <li><a href="/my-account">{{nickname}}님의 마이 페이지</a></li>
+                                <li><a href="/auth/logout">로그아웃</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="plus_1"></div>
+    <script>
+        $(function(){
+            $("#plus_1").load("body.html #plus_1")});
+    </script>
+
+    <!-- Start All Title Box -->
+    <div class="all-title-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>소개</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">About us</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End All Title Box -->
+
+    <!-- Start About Page  -->
+    <div class="about-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="noo-sh-title">We are <span>GPU-HUNT</span></h2>
+                    <p>GPU-hunt - 최저가 그래픽 카드 쇼핑의 종착지
+                        당신의 그래픽 카드 쇼핑을 단순하고 경제적으로 만들어줄 GPU-hunt에 오신 것을 환영합니다!
+                         GPU-hunt는 최신 그래픽 카드를 가장 저렴한 가격에 찾을 수 있도록 도와주는 최저가 검색 전문 사이트입니다.<br><br>                        
+                        왜 GPU-hunt인가?<br>
+                        완전 최저가 보장: 다양한 온라인 쇼핑몰을 한눈에 비교하여 언제나 최저가를 제공합니다.<br>
+                        실시간 가격 비교: 실시간으로 업데이트되는 가격 정보로 최신 최저가를 놓치지 않습니다.<br>
+                        사용자 친화적 인터페이스: 간편하고 직관적인 검색 기능을 통해 원하는 제품을 빠르게 찾을 수 있습니다.<br>
+                        알림 서비스: 관심 있는 제품의 가격 변동을 실시간으로 알려주는 알림 서비스로 최적의 구매 타이밍을 놓치지 마세요.<br><br>
+                    </p>
+                    <p>GPU-hunt의 특별한 기능<br>
+                        가격 추적 기능: 원하는 제품의 가격 변동을 추적하여 최저가에 구매할 수 있는 기회를 제공합니다.<br>
+                        제품 리뷰 및 평점: 다른 사용자들의 리뷰와 평점을 통해 제품의 성능과 만족도를 미리 확인할 수 있습니다.<br>
+                        할인 및 쿠폰 정보: 추가적인 할인 혜택과 쿠폰 정보를 통해 더 많은 절약을 실현하세요.<br>
+                        GPU-hunt와 함께라면, 더 이상 수많은 사이트를 돌아다니며 가격 비교에 시간을 낭비할 필요가 없습니다.<br>
+                         최고의 그래픽 카드를 최저가로 만나보세요!
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="banner-frame"> <img class="img-thumbnail img-fluid" src="images/about-img.jpg" alt="" /></div>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-block-inner">
+                        <h3>We are Trusted</h3>
+                        <p>GPU-HUNT는 다양한 온라인 쇼핑몰의 가격을 실시간으로 비교하여 최저가를 제공합니다. 최신 가격 정보를 신속하게 업데이트하여 항상 최적의 구매 결정을 돕습니다. 투명하고 신뢰성 있는 서비스로 많은 사용자들에게 높은 평가를 받고 있습니다. </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-block-inner">
+                        <h3>We are Professional</h3>
+                        <p>
+                            GPU-HUNT는 최신 그래픽 카드 시장에 대한 깊은 이해와 전문 지식을 바탕으로 최적의 제품을 추천합니다. 다양한 온라인 쇼핑몰의 데이터를 정확히 분석하여 신뢰할 수 있는 최저가 정보를 제공합니다. 사용자들에게 전문적이고 정확한 정보를 제공하여 최고의 구매 결정을 도와드립니다.</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="service-block-inner">
+                        <h3>We are Expert</h3>
+                        <p>GPU-HUNT는 사용자 친화적인 인터페이스로 누구나 쉽게 최저가를 찾을 수 있습니다. 그래픽 카드 시장의 트렌드를 반영한 추천 제품 목록을 제공합니다. 다양한 리뷰와 평점을 통해 사용자들에게 신뢰성 높은 정보를 제공합니다. </p>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="row my-4">
+                <div class="col-12">
+                    <h2 class="noo-sh-title">Meet Our Team</h2>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> <img src="images/img-1.jpg" alt="" />
+                            <div class="team-content">
+                                <h3 class="title">김민서</h3>
+                                <span class="post">Web Developer</span>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" class="fab fa-facebook"></a></li>
+                                <li><a href="#" class="fab fa-twitter"></a></li>
+                                <li><a href="#" class="fab fa-google-plus"></a></li>
+                                <li><a href="#" class="fab fa-youtube"></a></li>
+                            </ul>
+                            <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="team-description">
+                            <p>"저는 팀을 이끌며 GPU Hunt의 목표를 달성하기 위해 최선을 다하고 있으며, 사용자들에게 최고의 서비스를 제공하기 위해 끊임없이 노력하고 있습니다." </p>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> <img src="images/img-2.jpg" alt="" />
+                            <div class="team-content">
+                                <h3 class="title">조준혁</h3>
+                                <span class="post">Web Developer</span>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" class="fab fa-facebook"></a></li>
+                                <li><a href="#" class="fab fa-twitter"></a></li>
+                                <li><a href="#" class="fab fa-google-plus"></a></li>
+                                <li><a href="#" class="fab fa-youtube"></a></li>
+                            </ul>
+                            <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="team-description">
+                            <p>"저는 GPU Hunt의 성공을 위해 끊임없이 배우고 성장하며 최선을 다하고 있습니다." </p>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> <img src="images/img-3.jpg" alt="" />
+                            <div class="team-content">
+                                <h3 class="title">김성환</h3>
+                                <span class="post">Web Developer</span>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" class="fab fa-facebook"></a></li>
+                                <li><a href="#" class="fab fa-twitter"></a></li>
+                                <li><a href="#" class="fab fa-google-plus"></a></li>
+                                <li><a href="#" class="fab fa-youtube"></a></li>
+                            </ul>
+                            <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="team-description">
+                            <p>"팀과 함께 최고의 결과를 이루기 위해 열정을 다해 노력하고 있습니다."</p>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> <img src="images/img-4.jpg" alt="" />
+                            <div class="team-content">
+                                <h3 class="title">정지석</h3>
+                                <span class="post">Web Developer</span>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" class="fab fa-facebook"></a></li>
+                                <li><a href="#" class="fab fa-twitter"></a></li>
+                                <li><a href="#" class="fab fa-google-plus"></a></li>
+                                <li><a href="#" class="fab fa-youtube"></a></li>
+                            </ul>
+                            <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="team-description">
+                            <p>"기술에 대한 깊은 관심으로 매일 새로운 도전에 도전하고 있습니다." </p>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> <img src="images/img-5.jpg" alt="" />
+                            <div class="team-content">
+                                <h3 class="title">김형진</h3>
+                                <span class="post">Web Developer</span>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" class="fab fa-facebook"></a></li>
+                                <li><a href="#" class="fab fa-twitter"></a></li>
+                                <li><a href="#" class="fab fa-google-plus"></a></li>
+                                <li><a href="#" class="fab fa-youtube"></a></li>
+                            </ul>
+                            <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="team-description">
+                            <p>"우리의 목표를 현실로 만들기 위해 항상 창의적이고 혁신적으로 접근합니다." </p>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="hover-team">
+                        <div class="our-team"> <img src="images/img-6.jpg" alt="" />
+                            <div class="team-content">
+                                <h3 class="title">송호영</h3>
+                                <span class="post">Web Developer</span>
+                            </div>
+                            <ul class="social">
+                                <li><a href="#" class="fab fa-facebook"></a></li>
+                                <li><a href="#" class="fab fa-twitter"></a></li>
+                                <li><a href="#" class="fab fa-google-plus"></a></li>
+                                <li><a href="#" class="fab fa-youtube"></a></li>
+                            </ul>
+                            <div class="icon"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        </div>
+                        <div class="team-description">
+                            <p>"사용자들에게 최고의 경험을 제공하기 위해 끊임없이 헌신하고 있습니다." </p>
+                        </div>
+                        <hr class="my-0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- End About Page -->
+      <!-- 챗봇 토글 버튼 -->
+      <img id="chatbot-toggle" src="https://github.com/carusina/Final-SoftWare-Project/blob/ChatBot/%EC%B1%97%EB%B4%87.png?raw=true" alt="챗봇 열기" width="100" height="100">
+    
+      <!-- 챗봇 창 -->
+      <div id="chatbot" style="display:none;">
+          <iframe src="http://localhost:7860" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+
+    <div id="plus_2"></div>
+    <script>
+        $(function(){
+            $("#plus_2").load("footer.html #plus_2")});
+    </script>
+
+    <!-- ALL JS FILES -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/jquery.superslides.min.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script src="js/inewsticker.js"></script>
+    <script src="js/bootsnav.js."></script>
+    <script src="js/images-loded.min.js"></script>
+    <script src="js/isotope.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/baguetteBox.min.js"></script>
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
