@@ -1,0 +1,29 @@
+  /* Popup styling */
+  .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.popup-header {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.popup-body {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+.popup-footer button {
+    padding: 10px 20px;
+    background-color: #fbb714;
+    border: none;
+    cursor: pointer;
+}
+.popup-footer button:hover {
+    background-color: #e6a00d;
+}
